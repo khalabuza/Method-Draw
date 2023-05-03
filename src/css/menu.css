@@ -196,3 +196,15 @@
   fill:  var(--z15);
 }
 
+/* custom sp css */
+#SpMenu {
+  display: none;
+}
+.sp-button {
+  font-size: 12px;
+}
+.sp-button:hover {
+  background-color: red!important;
+
+}
+

@@ -69,6 +69,8 @@ MD.Menu = function(){
 
   $("body").on('mousedown', close);
 
+  $('#tool_saveSP').on('click', (e) => editor.sp.SPSave());
+
   this.flash = flash;
 
 }

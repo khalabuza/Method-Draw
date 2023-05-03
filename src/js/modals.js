@@ -81,5 +81,34 @@ editor.modal = {
     js: function(el){
       el.children[0].classList.add("modal-item-wide");
     }
+  }),
+  schematicProSaved: new MD.Modal({
+    html: `
+      <div id="sp_save_modal">
+        <div>Your changes were successfully saved to SchematicPro</div>
+        <div id="sp_modal_button_group" class="toolbar_button">
+          <button id="sp_success_continue" class="ok">Ok</button>
+        </div>
+    </div>`,
+    js: function (el) {
+      el.querySelector("#sp_success_continue").addEventListener("click", function () {
+        editor.modal.schematicProSaved.close();
+      });
+    }
+  }),
+  schematicProFailed: new MD.Modal({
+    html: `
+      <div id="sp_save_modal">
+        <div>Your changes were not saved to SchematicPro</div>
+        <div>Error:<div id="sp_save_error_message"></div></div>
+        <div id="sp_modal_button_group" class="toolbar_button">
+          <button id="sp_fail_continue" class="ok">OK</button>
+        </div>
+    </div>`,
+    js: function (el) {
+      el.querySelector("#sp_fail_continue").addEventListener("click", function () {
+        editor.modal.schematicProFailed.close();
+      });
+    }
   })
 };

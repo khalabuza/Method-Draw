@@ -18,6 +18,7 @@ editor.import = new MD.Import();
 editor.contextMenu = new MD.ContextMenu();
 editor.darkmode = new MD.Darkmode();
 editor.title = new MD.Title();
+editor.sp = new MD.SpIntegration();
 
 // bind the selected event to our function that handles updates to the UI
 svgCanvas.bind("selected", editor.selectedChanged);
@@ -32,7 +33,12 @@ const shapeLib = svgCanvas.addExtension.apply(this, ["shapes", MD.Shapelib]);
 const eyedropper = svgCanvas.addExtension.apply(this, ["eyedropper", MD.Eyedropper]);
 state.set("canvasId", t("Untitled"));
 state.set("canvasMode", state.get("canvasMode"));
-
+//check for SP load
+if(editor.sp.getUrlEntity() !== null) {
+  console.log("SP URL FOUND!");
+   editor.sp.SPOpen();
+  $("#SpMenu").show();
+}
 // load from param
 if (!window.location.search.includes("?load=")) {
   svgCanvas.setSvgString(state.get("canvasContent"));
