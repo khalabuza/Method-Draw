@@ -5180,7 +5180,7 @@ this.svgToString = function(elem, indent) {
           var uri = attr.namespaceURI;
           if(uri && !nsuris[uri] && nsMap[uri] !== 'xmlns' && nsMap[uri] !== 'xml' ) {
             nsuris[uri] = true;
-            out.push(" xmlns:" + nsMap[uri] + '="' + uri +'"');
+            out.push(" xmlns:" + attr.prefix + '="' + uri +'"');
           }
         });
       });
