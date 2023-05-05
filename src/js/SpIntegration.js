@@ -84,7 +84,6 @@ MD.SpIntegration = function () {
 
             if (svgContent !== "") {
                 editor.import.loadSvgString(svgContent)
-                editor.zoom.multiply(8);
             } else {
                 alert("Could not find Entity_id!  Please contact support")
             }

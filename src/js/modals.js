@@ -31,7 +31,7 @@ editor.modal = {
         var saveChanges = function() {
           svgCanvas.clearSelection();
           $('#svg_source_textarea').blur();
-          editor.zoom.multiply(1);
+          editor.zoom.multiply(8);
           editor.rulers.update();
           editor.paintBox.fill.prep();
           editor.paintBox.stroke.prep();

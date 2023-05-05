@@ -68,3 +68,4 @@ state.set("canvasTitle", svgCanvas.getDocumentTitle());
 
 document.body.classList.remove("loading");
 document.getElementById("svgcanvas").removeAttribute("title");
+editor.zoom.multiply(8);

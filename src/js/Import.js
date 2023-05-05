@@ -80,6 +80,7 @@ MD.Import = function(){
       callback(true);
       editor.saveCanvas();
       state.set("canvasTitle", svgCanvas.getDocumentTitle());
+      editor.zoom.multiply(9);
     } else {
       $.alert("Error: Unable to load SVG data", function() {
         callback(false);
