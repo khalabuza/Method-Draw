@@ -22,17 +22,24 @@ MD.SpIntegration = function () {
 
     function SPSave() {
         console.log("SAVE TO SP");
+
+        //get entity_id from url parm
+        var entity_id = getUrlEntity();
+        var returnUrl = getUrlReturn();
+        if (entity_id === null || returnUrl === null) return;
+
         const str = '<?xml version="1.0"?>\n' + svgCanvas.svgCanvasToString();
         //encode svg to base64
         const b64Data = btoa(str);
 
         const requestOptions = {
             method: 'Post',
-            crossorigin: true,
+            credentials: 'include',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ entity_id: getUrlEntity(), icon: b64Data })
+            body: JSON.stringify({ entity_id: entity_id, icon: b64Data })
         };
-        fetch('https://localhost:44368/api/SaveFromSVGEditor', requestOptions)
+
+        fetch(`https://${returnUrl}/api/SaveFromSVGEditor`, requestOptions)
             .then(response => response.text())//promise
             .then(status => {//promise result
                 if (JSON.parse(status) === 'Success') {
@@ -52,13 +59,16 @@ MD.SpIntegration = function () {
     async function SPOpen() {
         try {
             //get entity_id from url parm
-            var entity_id = this.getUrlEntity();
-            var returnUrl = this.getUrlReturn();
+            var entity_id = getUrlEntity();
+            var returnUrl = getUrlReturn();
             if (entity_id === null || returnUrl === null) return;
 
             var svgContent = "";
             var SvgName = ""
-            await fetch(`https://${returnUrl}/api/EntityByIdForSVGEditor/${entity_id}`)
+            await fetch(`https://${returnUrl}/api/EntityByIdForSVGEditor/${entity_id}`, {
+                method: 'Get',
+                credentials: 'include'
+            })
                 .then((res) => res.json())
                 .then((data) => {
                     console.log(data);
