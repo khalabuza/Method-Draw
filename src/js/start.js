@@ -38,6 +38,8 @@ if(editor.sp.getUrlEntity() !== null) {
   console.log("SP URL FOUND!");
    editor.sp.SPOpen();
   $("#SpMenu").show();
+}else{
+  svgCanvas.clear();
 }
 // load from param
 if (!window.location.search.includes("?load=")) {
